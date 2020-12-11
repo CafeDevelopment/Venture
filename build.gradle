@@ -3,7 +3,7 @@ plugins {
 }
 
 group 'me.yagel15637.venture'
-version '1.0-SNAPSHOT'
+version '2.0-SNAPSHOT'
 
 repositories {
     mavenCentral()
