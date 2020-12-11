@@ -1,5 +1,7 @@
 package me.yagel15637.venture.command;
 
+import me.yagel15637.venture.exceptions.VentureException;
+
 /**
  * @author Reap
  */
@@ -23,5 +25,5 @@ public interface ICommand {
      * happens when a line that's being parsed starts with one of the {@link #getAliases()}
      * @param args the arguments for the command
      */
-    void execute(String[] args);
+    void execute(String[] args) throws VentureException;
 }

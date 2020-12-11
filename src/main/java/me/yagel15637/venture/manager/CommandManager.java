@@ -1,6 +1,7 @@
 package me.yagel15637.venture.manager;
 
 import me.yagel15637.venture.command.ICommand;
+import me.yagel15637.venture.exceptions.VentureException;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -18,6 +19,11 @@ public final class CommandManager {
      * indicates whether we should use {@link String#equals(Object)} or {@link String#equalsIgnoreCase(String)}
      */
     public static boolean ignoresCases = true;
+
+    /**
+     * indicates whether we should print out exceptions to the console
+     */
+    public static boolean debug = false;
 
     /**
      * @return all the commands added
@@ -43,7 +49,11 @@ public final class CommandManager {
             for (ICommand command : commands) {
                 for (String alias : command.getAliases()) {
                     if (ignoresCases ? cmdName.equalsIgnoreCase(alias) : cmdName.equals(alias)) {
-                        command.execute(args);
+                        try {
+                            command.execute(args);
+                        } catch (VentureException e) {
+                            if (debug) e.printStackTrace();
+                        }
                     }
                 }
             }
